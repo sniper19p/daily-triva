@@ -12,20 +12,37 @@ npm install daily-trivia
 ## Usage
 To use this module in your Node.js project, require it and call the getDailyQuestions function:
 ```sh
-const dailyTrivia = require('daily-trivia');
+const randomQuotes = require('daily-trivia');
 
-dailyTrivia.getDailyQuestions()
-  .then(questions => {
-    console.log(questions);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+// Get a single random quote
+randomQuotes.getRandomQuotes().then(quotes => {
+  console.log(quotes[0]);
+});
+
+// Get 5 random quotes
+randomQuotes.getRandomQuotes(5).then(quotes => {
+  console.log(quotes);
+});
+
+// Get 5 random quotes by Albert Einstein
+randomQuotes.getRandomQuotes(5, 'Albert Einstein').then(quotes => {
+  console.log(quotes);
+});
 
   ```
-  This will log an array of 10 random trivia questions to the console.
+The getRandomQuotes function accepts the following optional parameters:
+
+numQuotes: The number of quotes to retrieve. Defaults to 1 if not specified.
+author: The author of the quotes to retrieve.
+keyword: This parameter is no longer available.
+This function returns a Promise that resolves to an array of quote objects, where each object has the following properties:
+
+text: The text of the quote.
+author: The author of the quote (if available).
+source: The source of the quote (if available).
+
 
 
 ## License
-This project is licensed under the ISC License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
